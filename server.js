@@ -35,15 +35,15 @@ function filterByQuery(query, animalsArray) {
     }
 
     if (query.diet) {
-        filteredResults = filteredResults.filter(animal.diet === query.diet);
+        filteredResults = filteredResults.filter(animal => animal.diet === query.diet);
     }
 
     if (query.species) {
-        filteredResults = filteredResults.filter(animal.species === query.species);
+        filteredResults = filteredResults.filter(animal => animal.species === query.species);
     }
 
     if (query.name) {
-        filteredResults = filteredResults.filter(animal === query.name);
+        filteredResults = filteredResults.filter(animal => animal.name === query.name);
     }
     // Return the filtered results:
     return filteredResults;
@@ -72,6 +72,12 @@ app.get('/api/animals/:id', (req, res) => {
     else {
         res.send(404);
     }
+});
+
+app.post('/api/animals', (req, res) => {
+    // req.body is where our incoming content will be
+    console.log(req.body);
+    res.json(req.body);
 });
 
 app.listen(PORT, () => {
